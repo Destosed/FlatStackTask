@@ -12,6 +12,7 @@ class CountryListViewController: UIViewController {
     var firstPage = "https://rawgit.com/NikitaAsabin/799e4502c9fc3e0ea7af439b2dfd88fa/raw/7f5c6c66358501f72fada21e04d75f64474a7888/page1.json"
     var nextPage: String?
     var isGettingData = false
+    var refresher = UIRefreshControl()
     
     //MARK: - Life Circle
 
@@ -19,6 +20,7 @@ class CountryListViewController: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
+        setupRefresher()
         fetchData(page: firstPage)
     }
     
@@ -58,8 +60,23 @@ class CountryListViewController: UIViewController {
                 self.nextPage = networkResponse.next
                 self.isGettingData = false
                 self.tableView.reloadData()
+                self.refresher.endRefreshing()
             }
         }
+    }
+    
+    //MARK: - Refresher Stack
+    
+    func setupRefresher() {
+        
+        refresher.addTarget(self, action: #selector(pulledToRefresh), for: .valueChanged)
+        tableView.refreshControl = refresher
+    }
+    
+    @objc func pulledToRefresh() {
+        
+        countries.removeAll()
+        fetchData(page: firstPage)
     }
 }
 
