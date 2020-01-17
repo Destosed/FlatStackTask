@@ -9,23 +9,39 @@
 /* Begin PBXBuildFile section */
 		4299102F23D1BFC3005368F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299102E23D1BFC3005368F9 /* AppDelegate.swift */; };
 		4299103123D1BFC3005368F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299103023D1BFC3005368F9 /* SceneDelegate.swift */; };
-		4299103323D1BFC3005368F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299103223D1BFC3005368F9 /* ViewController.swift */; };
+		4299103323D1BFC3005368F9 /* CountryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299103223D1BFC3005368F9 /* CountryListVC.swift */; };
 		4299103623D1BFC3005368F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4299103423D1BFC3005368F9 /* Main.storyboard */; };
 		4299103923D1BFC3005368F9 /* FlatStackTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4299103723D1BFC3005368F9 /* FlatStackTask.xcdatamodeld */; };
 		4299103B23D1BFC5005368F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4299103A23D1BFC5005368F9 /* Assets.xcassets */; };
 		4299103E23D1BFC5005368F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4299103C23D1BFC5005368F9 /* LaunchScreen.storyboard */; };
+		42C00F0423D1EC0300B0ECCF /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0223D1EC0300B0ECCF /* CountryCell.swift */; };
+		42C00F0523D1EC0300B0ECCF /* CountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C00F0323D1EC0300B0ECCF /* CountryCell.xib */; };
+		42C00F0723D1EFFF00B0ECCF /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0623D1EFFF00B0ECCF /* Country.swift */; };
+		42C00F0923D1F1B400B0ECCF /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0823D1F1B400B0ECCF /* NetworkResponse.swift */; };
+		42C00F0C23D1F21D00B0ECCF /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0B23D1F21D00B0ECCF /* LocalDataManager.swift */; };
+		42C00F0E23D1F22800B0ECCF /* RemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0D23D1F22800B0ECCF /* RemoteDataManager.swift */; };
+		4D1C2DF63C9610FCA381433A /* Pods_FlatStackTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4E0DA4902CFB35C55FC2D2 /* Pods_FlatStackTask.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16CEF189C002BB9F1E51F61E /* Pods-FlatStackTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlatStackTask.release.xcconfig"; path = "Target Support Files/Pods-FlatStackTask/Pods-FlatStackTask.release.xcconfig"; sourceTree = "<group>"; };
 		4299102B23D1BFC3005368F9 /* FlatStackTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlatStackTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4299102E23D1BFC3005368F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4299103023D1BFC3005368F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4299103223D1BFC3005368F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4299103223D1BFC3005368F9 /* CountryListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListVC.swift; sourceTree = "<group>"; };
 		4299103523D1BFC3005368F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4299103823D1BFC3005368F9 /* FlatStackTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlatStackTask.xcdatamodel; sourceTree = "<group>"; };
 		4299103A23D1BFC5005368F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4299103D23D1BFC5005368F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4299103F23D1BFC5005368F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42C00F0223D1EC0300B0ECCF /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
+		42C00F0323D1EC0300B0ECCF /* CountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCell.xib; sourceTree = "<group>"; };
+		42C00F0623D1EFFF00B0ECCF /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		42C00F0823D1F1B400B0ECCF /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		42C00F0B23D1F21D00B0ECCF /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
+		42C00F0D23D1F22800B0ECCF /* RemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataManager.swift; sourceTree = "<group>"; };
+		6490BE84616F7045C25E09A4 /* Pods-FlatStackTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlatStackTask.debug.xcconfig"; path = "Target Support Files/Pods-FlatStackTask/Pods-FlatStackTask.debug.xcconfig"; sourceTree = "<group>"; };
+		DC4E0DA4902CFB35C55FC2D2 /* Pods_FlatStackTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlatStackTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D1C2DF63C9610FCA381433A /* Pods_FlatStackTask.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +61,8 @@
 			children = (
 				4299102D23D1BFC3005368F9 /* FlatStackTask */,
 				4299102C23D1BFC3005368F9 /* Products */,
+				E60DB6FE6FE2C2CF6A71392A /* Pods */,
+				568D1AFC7336FB110266224B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,16 +77,72 @@
 		4299102D23D1BFC3005368F9 /* FlatStackTask */ = {
 			isa = PBXGroup;
 			children = (
-				4299102E23D1BFC3005368F9 /* AppDelegate.swift */,
-				4299103023D1BFC3005368F9 /* SceneDelegate.swift */,
-				4299103223D1BFC3005368F9 /* ViewController.swift */,
 				4299103423D1BFC3005368F9 /* Main.storyboard */,
+				42C00F0A23D1F20F00B0ECCF /* DataManagers */,
+				42C00F0123D1EBE300B0ECCF /* Models */,
+				42C00F0023D1EBD900B0ECCF /* Views */,
+				42C00EFF23D1EBC900B0ECCF /* Controllers */,
 				4299103A23D1BFC5005368F9 /* Assets.xcassets */,
 				4299103C23D1BFC5005368F9 /* LaunchScreen.storyboard */,
 				4299103F23D1BFC5005368F9 /* Info.plist */,
+				4299102E23D1BFC3005368F9 /* AppDelegate.swift */,
+				4299103023D1BFC3005368F9 /* SceneDelegate.swift */,
 				4299103723D1BFC3005368F9 /* FlatStackTask.xcdatamodeld */,
 			);
 			path = FlatStackTask;
+			sourceTree = "<group>";
+		};
+		42C00EFF23D1EBC900B0ECCF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4299103223D1BFC3005368F9 /* CountryListVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		42C00F0023D1EBD900B0ECCF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				42C00F0223D1EC0300B0ECCF /* CountryCell.swift */,
+				42C00F0323D1EC0300B0ECCF /* CountryCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		42C00F0123D1EBE300B0ECCF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				42C00F0623D1EFFF00B0ECCF /* Country.swift */,
+				42C00F0823D1F1B400B0ECCF /* NetworkResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		42C00F0A23D1F20F00B0ECCF /* DataManagers */ = {
+			isa = PBXGroup;
+			children = (
+				42C00F0B23D1F21D00B0ECCF /* LocalDataManager.swift */,
+				42C00F0D23D1F22800B0ECCF /* RemoteDataManager.swift */,
+			);
+			path = DataManagers;
+			sourceTree = "<group>";
+		};
+		568D1AFC7336FB110266224B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC4E0DA4902CFB35C55FC2D2 /* Pods_FlatStackTask.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E60DB6FE6FE2C2CF6A71392A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6490BE84616F7045C25E09A4 /* Pods-FlatStackTask.debug.xcconfig */,
+				16CEF189C002BB9F1E51F61E /* Pods-FlatStackTask.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +152,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4299104223D1BFC5005368F9 /* Build configuration list for PBXNativeTarget "FlatStackTask" */;
 			buildPhases = (
+				25641A530343A873CC0209C7 /* [CP] Check Pods Manifest.lock */,
 				4299102723D1BFC3005368F9 /* Sources */,
 				4299102823D1BFC3005368F9 /* Frameworks */,
 				4299102923D1BFC3005368F9 /* Resources */,
+				E61895019EF6ACA0338BCD80 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -128,6 +205,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C00F0523D1EC0300B0ECCF /* CountryCell.xib in Resources */,
 				4299103E23D1BFC5005368F9 /* LaunchScreen.storyboard in Resources */,
 				4299103B23D1BFC5005368F9 /* Assets.xcassets in Resources */,
 				4299103623D1BFC3005368F9 /* Main.storyboard in Resources */,
@@ -136,14 +214,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		25641A530343A873CC0209C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlatStackTask-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E61895019EF6ACA0338BCD80 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlatStackTask/Pods-FlatStackTask-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlatStackTask/Pods-FlatStackTask-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlatStackTask/Pods-FlatStackTask-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4299102723D1BFC3005368F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4299103323D1BFC3005368F9 /* ViewController.swift in Sources */,
+				4299103323D1BFC3005368F9 /* CountryListVC.swift in Sources */,
+				42C00F0C23D1F21D00B0ECCF /* LocalDataManager.swift in Sources */,
 				4299102F23D1BFC3005368F9 /* AppDelegate.swift in Sources */,
+				42C00F0923D1F1B400B0ECCF /* NetworkResponse.swift in Sources */,
+				42C00F0423D1EC0300B0ECCF /* CountryCell.swift in Sources */,
 				4299103923D1BFC3005368F9 /* FlatStackTask.xcdatamodeld in Sources */,
+				42C00F0E23D1F22800B0ECCF /* RemoteDataManager.swift in Sources */,
+				42C00F0723D1EFFF00B0ECCF /* Country.swift in Sources */,
 				4299103123D1BFC3005368F9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +411,7 @@
 		};
 		4299104323D1BFC5005368F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6490BE84616F7045C25E09A4 /* Pods-FlatStackTask.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -304,6 +430,7 @@
 		};
 		4299104423D1BFC5005368F9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16CEF189C002BB9F1E51F61E /* Pods-FlatStackTask.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
