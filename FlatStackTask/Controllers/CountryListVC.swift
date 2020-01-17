@@ -9,6 +9,9 @@ class CountryListViewController: UIViewController {
     //MARK: - Properties
     
     var countries: [Country] = []
+    var firstPage = "https://rawgit.com/NikitaAsabin/799e4502c9fc3e0ea7af439b2dfd88fa/raw/7f5c6c66358501f72fada21e04d75f64474a7888/page1.json"
+    var nextPage: String?
+    var isGettingData = false
     
     //MARK: - Life Circle
 
@@ -16,25 +19,45 @@ class CountryListViewController: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
-        fetchData()
+        fetchData(page: firstPage)
+    }
+    
+    //MARK:- Infinity Scroll
+    
+    func scrollViewDidScroll(_ scrollView:UIScrollView) {
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            
+            if !isGettingData && nextPage != "" {
+                fetchData(page: nextPage!)
+            }
+        }
     }
     
     //MARK: - Data Methods
     
-    func fetchData() {
+    func fetchData(page: String) {
         
-        RemoteDataManager.shared.getData { networkResponse, error in
+        isGettingData = true
+        
+        RemoteDataManager.shared.getData(page: page) { networkResponse, error in
             
-            guard error == nil else { fatalError() }
+            guard error == nil else {
+                AlertService.showErrorAlert(on: self, message: error!.localizedDescription)
+                self.tableView.reloadSections(IndexSet(integer: 1), with: .none)
+                return
+            }
             
             if let networkResponse = networkResponse {
                 
                 let fetchedCountries = networkResponse.countries
-                DispatchQueue.main.async {
-                    
-                    self.countries = fetchedCountries
-                    self.tableView.reloadData()
-                }
+                self.countries += fetchedCountries
+                self.nextPage = networkResponse.next
+                self.isGettingData = false
+                self.tableView.reloadData()
             }
         }
     }
@@ -49,25 +72,41 @@ extension CountryListViewController: UITableViewDelegate, UITableViewDataSource 
         tableView.delegate = self
         tableView.dataSource = self
         
-        let nibCell = UINib(nibName: "CountryCell", bundle: nil)
-        tableView.register(nibCell, forCellReuseIdentifier: "cell")
+        let countryCellNib = UINib(nibName: "CountryCell", bundle: nil)
+        tableView.register(countryCellNib, forCellReuseIdentifier: "CountryCell")
+        
+        let loadingCellNib = UINib(nibName: "LoadingCell", bundle: nil)
+        tableView.register(loadingCellNib, forCellReuseIdentifier: "LoadingCell")
         
         tableView.estimatedRowHeight = UITableView.automaticDimension
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countries.count
+        if section == 0 {
+            return countries.count
+        } else if section == 1 && isGettingData {
+            return 1
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CountryCell
-        cell.setup(for: countries[indexPath.row])
-        
-        return cell
+        if indexPath.section == 0 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell") as! CountryCell
+            cell.setup(for: countries[indexPath.row])
+            return cell
+            
+        } else {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell") as! LoadingCell
+            cell.spinner.startAnimating()
+            return cell
+        }
     }
 }

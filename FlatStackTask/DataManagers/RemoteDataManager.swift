@@ -5,11 +5,15 @@ class RemoteDataManager {
     
     static let shared = RemoteDataManager()
     
-    private let firstPageURL = "https://rawgit.com/NikitaAsabin/799e4502c9fc3e0ea7af439b2dfd88fa/raw/7f5c6c66358501f72fada21e04d75f64474a7888/page1.json"
-    
-    func getData(complition: @escaping (NetworkResponse?, Error?) -> ()) {
+    func getData(page: String, complition: @escaping (NetworkResponse?, Error?) -> ()) {
         
-        Alamofire.request(firstPageURL).responseData { response in
+        print("DEBUG:")
+        print("Going to URL: \(page)")
+        
+        Alamofire.request(page).responseData { response in
+            
+            print(response.result)
+            print("--------------------")
             
             if let error = response.error {
                 complition(nil, error)
@@ -22,8 +26,9 @@ class RemoteDataManager {
                     print("Error")
                     return
                 }
-                complition(networkResponse, nil)
-                return
+                DispatchQueue.main.async {
+                    complition(networkResponse, nil)
+                }
             }
         }
     }
