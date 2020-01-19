@@ -21,18 +21,18 @@ class DetailedInfoViewController: UIViewController {
         setupCollectionView()
         setupTableView()
         setupPageControl()
-        //setupNavBar()
+        setupNavBar()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationController?.navigationBar.transparentNavigationBar()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        self.navigationController?.navigationBar.removeTransparentNavigationBar()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        self.navigationController?.navigationBar.transparentNavigationBar()
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(true)
+//        self.navigationController?.navigationBar.removeTransparentNavigationBar()
+//    }
     
     //MARK: - Setups
     
@@ -45,10 +45,13 @@ class DetailedInfoViewController: UIViewController {
     
     func setupNavBar() {
         
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
+        //Transparent NavBar
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
+        
+        navigationController?.navigationBar.barStyle = .black
     }
 }
 
