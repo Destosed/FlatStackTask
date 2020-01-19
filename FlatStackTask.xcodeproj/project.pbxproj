@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		42440DD423D219F0007686F8 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42440DD223D219F0007686F8 /* LoadingCell.swift */; };
 		42440DD523D219F0007686F8 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42440DD323D219F0007686F8 /* LoadingCell.xib */; };
+		425FB23523D26D7D00D66BD3 /* DetailedInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425FB23423D26D7D00D66BD3 /* DetailedInfoViewController.swift */; };
 		4299102F23D1BFC3005368F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299102E23D1BFC3005368F9 /* AppDelegate.swift */; };
 		4299103123D1BFC3005368F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299103023D1BFC3005368F9 /* SceneDelegate.swift */; };
 		4299103323D1BFC3005368F9 /* CountryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299103223D1BFC3005368F9 /* CountryListVC.swift */; };
@@ -17,6 +18,8 @@
 		4299103B23D1BFC5005368F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4299103A23D1BFC5005368F9 /* Assets.xcassets */; };
 		4299103E23D1BFC5005368F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4299103C23D1BFC5005368F9 /* LaunchScreen.storyboard */; };
 		429EFC1B23D2215B006C0D6E /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429EFC1A23D2215B006C0D6E /* AlertService.swift */; };
+		42B2113E23D486AA0041A163 /* ImageSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B2113C23D486AA0041A163 /* ImageSliderCell.swift */; };
+		42B2113F23D486AA0041A163 /* ImageSliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42B2113D23D486AA0041A163 /* ImageSliderCell.xib */; };
 		42C00F0423D1EC0300B0ECCF /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0223D1EC0300B0ECCF /* CountryCell.swift */; };
 		42C00F0523D1EC0300B0ECCF /* CountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C00F0323D1EC0300B0ECCF /* CountryCell.xib */; };
 		42C00F0723D1EFFF00B0ECCF /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0623D1EFFF00B0ECCF /* Country.swift */; };
@@ -30,6 +33,7 @@
 		16CEF189C002BB9F1E51F61E /* Pods-FlatStackTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlatStackTask.release.xcconfig"; path = "Target Support Files/Pods-FlatStackTask/Pods-FlatStackTask.release.xcconfig"; sourceTree = "<group>"; };
 		42440DD223D219F0007686F8 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		42440DD323D219F0007686F8 /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		425FB23423D26D7D00D66BD3 /* DetailedInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedInfoViewController.swift; sourceTree = "<group>"; };
 		4299102B23D1BFC3005368F9 /* FlatStackTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlatStackTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4299102E23D1BFC3005368F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4299103023D1BFC3005368F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +44,8 @@
 		4299103D23D1BFC5005368F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4299103F23D1BFC5005368F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		429EFC1A23D2215B006C0D6E /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		42B2113C23D486AA0041A163 /* ImageSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCell.swift; sourceTree = "<group>"; };
+		42B2113D23D486AA0041A163 /* ImageSliderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSliderCell.xib; sourceTree = "<group>"; };
 		42C00F0223D1EC0300B0ECCF /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		42C00F0323D1EC0300B0ECCF /* CountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCell.xib; sourceTree = "<group>"; };
 		42C00F0623D1EFFF00B0ECCF /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
@@ -111,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				4299103223D1BFC3005368F9 /* CountryListVC.swift */,
+				425FB23423D26D7D00D66BD3 /* DetailedInfoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -122,6 +129,8 @@
 				42C00F0323D1EC0300B0ECCF /* CountryCell.xib */,
 				42440DD223D219F0007686F8 /* LoadingCell.swift */,
 				42440DD323D219F0007686F8 /* LoadingCell.xib */,
+				42B2113C23D486AA0041A163 /* ImageSliderCell.swift */,
+				42B2113D23D486AA0041A163 /* ImageSliderCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,6 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B2113F23D486AA0041A163 /* ImageSliderCell.xib in Resources */,
 				42C00F0523D1EC0300B0ECCF /* CountryCell.xib in Resources */,
 				4299103E23D1BFC5005368F9 /* LaunchScreen.storyboard in Resources */,
 				4299103B23D1BFC5005368F9 /* Assets.xcassets in Resources */,
@@ -286,6 +296,8 @@
 				42440DD423D219F0007686F8 /* LoadingCell.swift in Sources */,
 				42C00F0423D1EC0300B0ECCF /* CountryCell.swift in Sources */,
 				4299103923D1BFC3005368F9 /* FlatStackTask.xcdatamodeld in Sources */,
+				42B2113E23D486AA0041A163 /* ImageSliderCell.swift in Sources */,
+				425FB23523D26D7D00D66BD3 /* DetailedInfoViewController.swift in Sources */,
 				42C00F0E23D1F22800B0ECCF /* RemoteDataManager.swift in Sources */,
 				42C00F0723D1EFFF00B0ECCF /* Country.swift in Sources */,
 				4299103123D1BFC3005368F9 /* SceneDelegate.swift in Sources */,
