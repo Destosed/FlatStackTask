@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nUB-LO-US9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nUB-LO-US9">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,11 +12,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CountryListViewController" customModule="FlatStackTask" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dhJ-7s-jlZ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -32,18 +32,74 @@
                     <navigationItem key="navigationItem" title="Countries" id="YNf-2b-KFE"/>
                     <connections>
                         <outlet property="tableView" destination="dhJ-7s-jlZ" id="XCw-5d-Rhh"/>
+                        <segue destination="R7T-TC-yhU" kind="show" id="BRY-e6-3M3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="920" y="139"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Detailed Info View Controller-->
+        <scene sceneID="QdM-NG-LKx">
+            <objects>
+                <viewController storyboardIdentifier="DetailedInfoVC" id="R7T-TC-yhU" customClass="DetailedInfoViewController" customModule="FlatStackTask" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7bS-k5-4mB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="W99-GX-M58">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="255"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="255" id="iCe-8a-zwk"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rr6-AM-oID">
+                                    <size key="itemSize" width="416" height="254"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="uWk-2L-x4N">
+                                <rect key="frame" x="0.0" y="218" width="414" height="37"/>
+                            </pageControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ePy-xG-6Vo">
+                                <rect key="frame" x="0.0" y="255" width="414" height="437"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ePy-xG-6Vo" firstAttribute="top" secondItem="W99-GX-M58" secondAttribute="bottom" id="3Nh-IB-bJ3"/>
+                            <constraint firstAttribute="topMargin" secondItem="W99-GX-M58" secondAttribute="top" id="C46-4E-9iV"/>
+                            <constraint firstAttribute="bottom" secondItem="ePy-xG-6Vo" secondAttribute="bottom" id="Fqg-YT-7A7"/>
+                            <constraint firstItem="uWk-2L-x4N" firstAttribute="leading" secondItem="7bS-k5-4mB" secondAttribute="leading" id="HcG-gw-NX1"/>
+                            <constraint firstItem="ePy-xG-6Vo" firstAttribute="leading" secondItem="7bS-k5-4mB" secondAttribute="leading" id="RNn-8J-2Pa"/>
+                            <constraint firstItem="uWk-2L-x4N" firstAttribute="bottom" secondItem="W99-GX-M58" secondAttribute="bottom" id="TlN-Yv-Lma"/>
+                            <constraint firstAttribute="trailing" secondItem="ePy-xG-6Vo" secondAttribute="trailing" id="VHT-V9-AZI"/>
+                            <constraint firstItem="uWk-2L-x4N" firstAttribute="trailing" secondItem="7bS-k5-4mB" secondAttribute="trailing" id="W0A-vS-RRh"/>
+                            <constraint firstItem="W99-GX-M58" firstAttribute="leading" secondItem="7bS-k5-4mB" secondAttribute="leading" id="qCM-4b-cL8"/>
+                            <constraint firstItem="W99-GX-M58" firstAttribute="trailing" secondItem="7bS-k5-4mB" secondAttribute="trailing" id="zzv-OM-zek"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fdk-Uf-m4x"/>
+                    <connections>
+                        <outlet property="collectionView" destination="W99-GX-M58" id="iZz-ql-QKX"/>
+                        <outlet property="pageControl" destination="uWk-2L-x4N" id="Enl-4e-u2P"/>
+                        <outlet property="tableView" destination="ePy-xG-6Vo" id="bes-YM-9Mp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ko-z3-Syt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1663.7681159420292" y="138.58695652173915"/>
+        </scene>
+        <!--Custom Nav Controller-->
         <scene sceneID="grt-RK-3fg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nUB-LO-US9" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nUB-LO-US9" customClass="CustomNavController" customModule="FlatStackTask" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0kT-Zw-Xbw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="0kT-Zw-Xbw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -57,4 +113,5 @@
             <point key="canvasLocation" x="137.68115942028987" y="138.58695652173915"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
