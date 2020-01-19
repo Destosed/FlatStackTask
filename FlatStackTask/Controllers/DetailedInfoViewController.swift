@@ -5,6 +5,7 @@ class DetailedInfoViewController: UIViewController {
     //MARK: - IBOutlets
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pageControl: UIPageControl!
     
     //MARK: - Properties
@@ -18,13 +19,27 @@ class DetailedInfoViewController: UIViewController {
         super.viewDidLoad()
 
         setupCollectionView()
-        setupNavBar()
+        setupPageControl()
+        //setupNavBar()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.transparentNavigationBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.navigationBar.removeTransparentNavigationBar()
+    }
+    
+    //MARK: - Setups
     
     func setupPageControl() {
         
         pageControl.numberOfPages = images.count
         pageControl.hidesForSinglePage = true
+        pageControl.isUserInteractionEnabled = false
     }
     
     func setupNavBar() {
@@ -47,6 +62,8 @@ extension DetailedInfoViewController: UICollectionViewDelegate, UICollectionView
         
         let cellNib = UINib(nibName: "ImageSliderCell", bundle: nil)
         collectionView.register(cellNib, forCellWithReuseIdentifier: "ImageSliderCell")
+        
+        collectionView.contentInsetAdjustmentBehavior = .never
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -60,9 +77,13 @@ extension DetailedInfoViewController: UICollectionViewDelegate, UICollectionView
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        self.pageControl.currentPage = indexPath.row
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(collectionView.contentOffset.x) / Int(self.collectionView.frame.width)
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        self.pageControl.currentPage = indexPath.row
+//    }
     
     //MARK: - Flow Layout
     
@@ -88,3 +109,5 @@ extension DetailedInfoViewController: UICollectionViewDelegate, UICollectionView
 }
 
 //MARK: - TableView Stack
+
+
