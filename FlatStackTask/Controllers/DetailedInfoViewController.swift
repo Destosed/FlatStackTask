@@ -19,6 +19,7 @@ class DetailedInfoViewController: UIViewController {
         super.viewDidLoad()
 
         setupCollectionView()
+        setupTableView()
         setupPageControl()
         //setupNavBar()
     }
@@ -110,4 +111,60 @@ extension DetailedInfoViewController: UICollectionViewDelegate, UICollectionView
 
 //MARK: - TableView Stack
 
+extension DetailedInfoViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func setupTableView() {
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = UITableView.automaticDimension
+        
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 80))
+        let label = UILabel()
+        label.frame = CGRect.init(x: 25, y: 5, width: headerView.frame.width - 10, height: headerView.frame.height)
+        label.text = "Argentina"
+        label.font = label.font.withSize(30)
+        label.textColor = .black
+        headerView.addSubview(label)
+        
+        tableView.tableHeaderView = headerView
+        tableView.tableFooterView = UIView()
+        
+        let aboutInfoCellNIB = UINib(nibName: "AboutInfoCell", bundle: nil)
+        tableView.register(aboutInfoCellNIB, forCellReuseIdentifier: "AboutInfoCell")
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if section == 0 {
+            return 3
+        } else {
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
+            
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "\(indexPath.row)"
+            cell.selectionStyle = .none
+            return cell
+            
+        } else {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AboutInfoCell") as! AboutInfoCell
 
+            let text = "Республика Абхазия - частично признанное независимое государство. Кем не признано - для тех это Автономная Республика Абхазия в составе Грузии, причем оккупированная Россией. С VI века начало формироваться Абхазское Царство, тесно связанное с Византией. С XV века на страну стала давить и влиять мощная Османская Империя, а в XVIII веке в ситуацию вмешалась Российская Империя: для защиты от турков манифестом Александра I в 1810 году Абхазское Княжество было присоединено к Российской Империи. С преобразованием России в СССР статус Абхазии также менялся: то советская республика, то автономия в составе грузинской ССР. С распадом Советского Союза в конце XX века возобновились конфликты: грузины посчитали, что Абхазия принадлежит им, теперь независимым, а абхазы тому воспротивились и грузинов со своей территории повыгоняли"
+            cell.setup(for: text)
+            cell.selectionStyle = .none
+            
+            return cell
+        }
+    }
+}
