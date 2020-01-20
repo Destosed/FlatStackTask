@@ -21,18 +21,19 @@ class DetailedInfoViewController: UIViewController {
         setupCollectionView()
         setupTableView()
         setupPageControl()
-        setupNavBar()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//        self.navigationController?.navigationBar.transparentNavigationBar()
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(true)
-//        self.navigationController?.navigationBar.removeTransparentNavigationBar()
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        enableNavBarTransparency()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        disableNavBarTransparency()
+    }
     
     //MARK: - Setups
     
@@ -43,15 +44,22 @@ class DetailedInfoViewController: UIViewController {
         pageControl.isUserInteractionEnabled = false
     }
     
-    func setupNavBar() {
+    func enableNavBarTransparency() {
         
-        //Transparent NavBar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.view.backgroundColor = .clear
         
         navigationController?.navigationBar.barStyle = .black
+    }
+    
+    func disableNavBarTransparency() {
+        
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.isTranslucent = false
+        
+        navigationController?.navigationBar.barStyle = .default
     }
 }
 
@@ -84,10 +92,6 @@ extension DetailedInfoViewController: UICollectionViewDelegate, UICollectionView
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(collectionView.contentOffset.x) / Int(self.collectionView.frame.width)
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        self.pageControl.currentPage = indexPath.row
-//    }
     
     //MARK: - Flow Layout
     
@@ -122,17 +126,18 @@ extension DetailedInfoViewController: UITableViewDelegate, UITableViewDataSource
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         
+        //HeaderView with label
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 80))
         let label = UILabel()
         label.frame = CGRect.init(x: 25, y: 5, width: headerView.frame.width - 10, height: headerView.frame.height)
-        label.text = "Argentina"
+        label.text = countryInfo.name
         label.font = label.font.withSize(30)
         label.textColor = .black
         headerView.addSubview(label)
-        
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = UIView()
         
+        //Register Cell
         let aboutInfoCellNIB = UINib(nibName: "AboutInfoCell", bundle: nil)
         tableView.register(aboutInfoCellNIB, forCellReuseIdentifier: "AboutInfoCell")
     }
@@ -154,8 +159,25 @@ extension DetailedInfoViewController: UITableViewDelegate, UITableViewDataSource
         
         if indexPath.section == 0 {
             
-            let cell = UITableViewCell()
-            cell.textLabel?.text = "\(indexPath.row)"
+            let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+            
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "Capital"
+                cell.imageView?.image = #imageLiteral(resourceName: "i-star.png")
+                cell.detailTextLabel?.text = countryInfo.capital
+            case 1:
+                cell.textLabel?.text = "Population"
+                cell.imageView?.image = #imageLiteral(resourceName: "i-face.png")
+                cell.detailTextLabel?.text = Helper.convertNumber(number: countryInfo.population)
+            case 2:
+                cell.textLabel?.text = "Continent"
+                cell.imageView?.image = #imageLiteral(resourceName: "i-earth.png")
+                cell.detailTextLabel?.text = countryInfo.continent
+            default:
+                return UITableViewCell()
+            }
+                
             cell.selectionStyle = .none
             return cell
             
@@ -163,8 +185,7 @@ extension DetailedInfoViewController: UITableViewDelegate, UITableViewDataSource
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "AboutInfoCell") as! AboutInfoCell
 
-            let text = "Республика Абхазия - частично признанное независимое государство. Кем не признано - для тех это Автономная Республика Абхазия в составе Грузии, причем оккупированная Россией. С VI века начало формироваться Абхазское Царство, тесно связанное с Византией. С XV века на страну стала давить и влиять мощная Османская Империя, а в XVIII веке в ситуацию вмешалась Российская Империя: для защиты от турков манифестом Александра I в 1810 году Абхазское Княжество было присоединено к Российской Империи. С преобразованием России в СССР статус Абхазии также менялся: то советская республика, то автономия в составе грузинской ССР. С распадом Советского Союза в конце XX века возобновились конфликты: грузины посчитали, что Абхазия принадлежит им, теперь независимым, а абхазы тому воспротивились и грузинов со своей территории повыгоняли"
-            cell.setup(for: text)
+            cell.setup(for: countryInfo.description)
             cell.selectionStyle = .none
             
             return cell
