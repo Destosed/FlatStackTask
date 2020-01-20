@@ -23,8 +23,6 @@
 		42B2114523D50A6C0041A163 /* NavBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B2114423D50A6C0041A163 /* NavBarExtension.swift */; };
 		42B2114823D516E80041A163 /* AboutInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42B2114623D516E80041A163 /* AboutInfoCell.xib */; };
 		42B2114923D516E80041A163 /* AboutInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B2114723D516E80041A163 /* AboutInfoCell.swift */; };
-		42B2114E23D5B5DF0041A163 /* ShortInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B2114C23D5B5DF0041A163 /* ShortInfoCell.swift */; };
-		42B2114F23D5B5DF0041A163 /* ShortInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42B2114D23D5B5DF0041A163 /* ShortInfoCell.xib */; };
 		42B2115123D5BE190041A163 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B2115023D5BE190041A163 /* Helper.swift */; };
 		42C00F0423D1EC0300B0ECCF /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0223D1EC0300B0ECCF /* CountryCell.swift */; };
 		42C00F0523D1EC0300B0ECCF /* CountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42C00F0323D1EC0300B0ECCF /* CountryCell.xib */; };
@@ -56,8 +54,6 @@
 		42B2114423D50A6C0041A163 /* NavBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarExtension.swift; sourceTree = "<group>"; };
 		42B2114623D516E80041A163 /* AboutInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutInfoCell.xib; sourceTree = "<group>"; };
 		42B2114723D516E80041A163 /* AboutInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutInfoCell.swift; sourceTree = "<group>"; };
-		42B2114C23D5B5DF0041A163 /* ShortInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortInfoCell.swift; sourceTree = "<group>"; };
-		42B2114D23D5B5DF0041A163 /* ShortInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortInfoCell.xib; sourceTree = "<group>"; };
 		42B2115023D5BE190041A163 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		42C00F0223D1EC0300B0ECCF /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		42C00F0323D1EC0300B0ECCF /* CountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCell.xib; sourceTree = "<group>"; };
@@ -156,8 +152,6 @@
 				42B2113D23D486AA0041A163 /* ImageSliderCell.xib */,
 				42B2114723D516E80041A163 /* AboutInfoCell.swift */,
 				42B2114623D516E80041A163 /* AboutInfoCell.xib */,
-				42B2114C23D5B5DF0041A163 /* ShortInfoCell.swift */,
-				42B2114D23D5B5DF0041A163 /* ShortInfoCell.xib */,
 			);
 			path = DetailedInfoScreen;
 			sourceTree = "<group>";
@@ -281,7 +275,6 @@
 				4299103B23D1BFC5005368F9 /* Assets.xcassets in Resources */,
 				42440DD523D219F0007686F8 /* LoadingCell.xib in Resources */,
 				4299103623D1BFC3005368F9 /* Main.storyboard in Resources */,
-				42B2114F23D5B5DF0041A163 /* ShortInfoCell.xib in Resources */,
 				42B2114823D516E80041A163 /* AboutInfoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,7 +340,6 @@
 				42B2115123D5BE190041A163 /* Helper.swift in Sources */,
 				4299103923D1BFC3005368F9 /* FlatStackTask.xcdatamodeld in Sources */,
 				42B2113E23D486AA0041A163 /* ImageSliderCell.swift in Sources */,
-				42B2114E23D5B5DF0041A163 /* ShortInfoCell.swift in Sources */,
 				425FB23523D26D7D00D66BD3 /* DetailedInfoViewController.swift in Sources */,
 				42C00F0E23D1F22800B0ECCF /* RemoteDataManager.swift in Sources */,
 				42C00F0723D1EFFF00B0ECCF /* Country.swift in Sources */,

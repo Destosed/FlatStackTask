@@ -82,6 +82,7 @@
                             <constraint firstItem="W99-GX-M58" firstAttribute="leading" secondItem="7bS-k5-4mB" secondAttribute="leading" id="qCM-4b-cL8"/>
                             <constraint firstItem="W99-GX-M58" firstAttribute="trailing" secondItem="7bS-k5-4mB" secondAttribute="trailing" id="zzv-OM-zek"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="AMR-qS-hum"/>
                     </view>
                     <navigationItem key="navigationItem" id="fdk-Uf-m4x"/>
                     <connections>
@@ -94,10 +95,10 @@
             </objects>
             <point key="canvasLocation" x="1663.7681159420292" y="138.58695652173915"/>
         </scene>
-        <!--Custom Nav Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="grt-RK-3fg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nUB-LO-US9" customClass="CustomNavController" customModule="FlatStackTask" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nUB-LO-US9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="0kT-Zw-Xbw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>

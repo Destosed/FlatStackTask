@@ -151,22 +151,29 @@ extension DetailedInfoViewController: UITableViewDelegate, UITableViewDataSource
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = UITableView.automaticDimension
-        
-        //HeaderView with label
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 80))
-        let label = UILabel()
-        label.frame = CGRect.init(x: 25, y: 5, width: headerView.frame.width - 10, height: headerView.frame.height)
-        label.text = countryInfo.name
-        label.font = label.font.withSize(30)
-        label.textColor = .black
-        headerView.addSubview(label)
-        tableView.tableHeaderView = headerView
-        tableView.tableFooterView = UIView()
         
         //Register Cell
         let aboutInfoCellNIB = UINib(nibName: "AboutInfoCell", bundle: nil)
         tableView.register(aboutInfoCellNIB, forCellReuseIdentifier: "AboutInfoCell")
+        
+        //HeaderView with label
+        let headerView = UIView()
+        headerView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 75)
+        
+        let label = UILabel()
+        label.text = countryInfo.name
+        label.font = label.font.withSize(30)
+        label.numberOfLines = 0
+        
+        headerView.addSubview(label)
+        tableView.tableHeaderView = headerView
+        tableView.tableFooterView = UIView()
+
+        //Label constraints
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: 10).isActive = true
+        label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 25).isActive = true
+        label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor, constant: 7).isActive = true
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -179,6 +186,15 @@ extension DetailedInfoViewController: UITableViewDelegate, UITableViewDataSource
             return 3
         } else {
             return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.section == 0 {
+            return 44
+        } else {
+            return UITableView.automaticDimension
         }
     }
     
