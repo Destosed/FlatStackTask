@@ -11,7 +11,9 @@ class DetailedInfoViewController: UIViewController {
     //MARK: - Properties
     
     var countryInfo: Country!
-    var images: [UIImage] = [#imageLiteral(resourceName: "test1.jpg"), #imageLiteral(resourceName: "test2.jpg"), #imageLiteral(resourceName: "test3.jpg")]
+    var flagImage: UIImage!
+    
+    var images: [UIImage] = []
     
     //MARK: - Life Circle
     
@@ -21,6 +23,8 @@ class DetailedInfoViewController: UIViewController {
         setupCollectionView()
         setupTableView()
         setupPageControl()
+        
+        fetchImages()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +37,29 @@ class DetailedInfoViewController: UIViewController {
         super.viewWillDisappear(true)
         
         disableNavBarTransparency()
+    }
+    
+    //MARK: - Data fetching
+    
+    func fetchImages() {
+        
+        images = [#imageLiteral(resourceName: "imagePlaceholder.jpg")] //Ставим PlaceHolder
+        
+        let flagImageURL = countryInfo.country_info.flag
+        var imagesURL = countryInfo.country_info.images
+        if let extraImageURL = countryInfo.image, !extraImageURL.isEmpty {
+            imagesURL.append(extraImageURL)
+        }
+        
+        RemoteDataManager.shared.getImages(flagImageURL: flagImageURL, imageURLs: imagesURL) { images in
+            
+            DispatchQueue.main.async {
+                
+                self.images.removeAll() //Убираем PlaceHolder
+                self.images = images
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     //MARK: - Setups

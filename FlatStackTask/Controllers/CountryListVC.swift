@@ -131,7 +131,9 @@ extension CountryListViewController: UITableViewDelegate, UITableViewDataSource 
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailedInfoVC = storyboard.instantiateViewController(identifier: "DetailedInfoVC") as! DetailedInfoViewController
+        
         detailedInfoVC.countryInfo = countries[indexPath.row]
+        
         navigationController?.pushViewController(detailedInfoVC, animated: true)
     }
 }

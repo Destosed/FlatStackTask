@@ -32,6 +32,7 @@
 		42C00F0923D1F1B400B0ECCF /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0823D1F1B400B0ECCF /* NetworkResponse.swift */; };
 		42C00F0C23D1F21D00B0ECCF /* LocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0B23D1F21D00B0ECCF /* LocalDataManager.swift */; };
 		42C00F0E23D1F22800B0ECCF /* RemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C00F0D23D1F22800B0ECCF /* RemoteDataManager.swift */; };
+		42C9581923D5DD0700A79469 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C9581823D5DD0700A79469 /* ImageViewExtension.swift */; };
 		4D1C2DF63C9610FCA381433A /* Pods_FlatStackTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4E0DA4902CFB35C55FC2D2 /* Pods_FlatStackTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		42C00F0823D1F1B400B0ECCF /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		42C00F0B23D1F21D00B0ECCF /* LocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataManager.swift; sourceTree = "<group>"; };
 		42C00F0D23D1F22800B0ECCF /* RemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataManager.swift; sourceTree = "<group>"; };
+		42C9581823D5DD0700A79469 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		6490BE84616F7045C25E09A4 /* Pods-FlatStackTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlatStackTask.debug.xcconfig"; path = "Target Support Files/Pods-FlatStackTask/Pods-FlatStackTask.debug.xcconfig"; sourceTree = "<group>"; };
 		DC4E0DA4902CFB35C55FC2D2 /* Pods_FlatStackTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlatStackTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				42B2114423D50A6C0041A163 /* NavBarExtension.swift */,
+				42C9581823D5DD0700A79469 /* ImageViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				4299103323D1BFC3005368F9 /* CountryListVC.swift in Sources */,
 				42C00F0C23D1F21D00B0ECCF /* LocalDataManager.swift in Sources */,
 				4299102F23D1BFC3005368F9 /* AppDelegate.swift in Sources */,
+				42C9581923D5DD0700A79469 /* ImageViewExtension.swift in Sources */,
 				42C00F0923D1F1B400B0ECCF /* NetworkResponse.swift in Sources */,
 				42440DD423D219F0007686F8 /* LoadingCell.swift in Sources */,
 				42C00F0423D1EC0300B0ECCF /* CountryCell.swift in Sources */,
