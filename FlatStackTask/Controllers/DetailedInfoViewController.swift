@@ -90,7 +90,7 @@ class DetailedInfoViewController: UIViewController {
                 break
             }
             
-            if topOffsetConstraint.constant + translation.y >= 255 {
+            if topOffsetConstraint.constant + translation.y >= 245 {
                 break
             }
             
@@ -205,6 +205,8 @@ extension DetailedInfoViewController: UITableViewDelegate, UITableViewDataSource
         tableView.dataSource = self
         
         tableView.isScrollEnabled = false
+        tableView.layer.cornerRadius = 15
+        tableView.clipsToBounds = true
         
         //Register Cell
         let aboutInfoCellNIB = UINib(nibName: "AboutInfoCell", bundle: nil)
