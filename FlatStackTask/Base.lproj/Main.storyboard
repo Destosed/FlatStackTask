@@ -48,10 +48,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="W99-GX-M58">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="255"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="255" id="iCe-8a-zwk"/>
+                                    <constraint firstAttribute="height" constant="260" id="iCe-8a-zwk"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rr6-AM-oID">
                                     <size key="itemSize" width="416" height="254"/>
@@ -62,16 +62,16 @@
                                 <cells/>
                             </collectionView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="uWk-2L-x4N">
-                                <rect key="frame" x="0.0" y="218" width="414" height="37"/>
+                                <rect key="frame" x="0.0" y="223" width="414" height="37"/>
                             </pageControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ePy-xG-6Vo">
-                                <rect key="frame" x="0.0" y="255" width="414" height="437"/>
+                                <rect key="frame" x="0.0" y="245" width="414" height="447"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ePy-xG-6Vo" firstAttribute="top" secondItem="W99-GX-M58" secondAttribute="bottom" id="3Nh-IB-bJ3"/>
+                            <constraint firstItem="ePy-xG-6Vo" firstAttribute="top" secondItem="7bS-k5-4mB" secondAttribute="top" constant="245" id="3Nh-IB-bJ3"/>
                             <constraint firstAttribute="topMargin" secondItem="W99-GX-M58" secondAttribute="top" id="C46-4E-9iV"/>
                             <constraint firstAttribute="bottom" secondItem="ePy-xG-6Vo" secondAttribute="bottom" id="Fqg-YT-7A7"/>
                             <constraint firstItem="uWk-2L-x4N" firstAttribute="leading" secondItem="7bS-k5-4mB" secondAttribute="leading" id="HcG-gw-NX1"/>
@@ -89,6 +89,7 @@
                         <outlet property="collectionView" destination="W99-GX-M58" id="iZz-ql-QKX"/>
                         <outlet property="pageControl" destination="uWk-2L-x4N" id="Enl-4e-u2P"/>
                         <outlet property="tableView" destination="ePy-xG-6Vo" id="bes-YM-9Mp"/>
+                        <outlet property="topOffsetConstraint" destination="3Nh-IB-bJ3" id="UOC-LF-IO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ko-z3-Syt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

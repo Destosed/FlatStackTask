@@ -7,6 +7,7 @@ class DetailedInfoViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var topOffsetConstraint: NSLayoutConstraint!
     
     //MARK: - Properties
     
@@ -23,6 +24,7 @@ class DetailedInfoViewController: UIViewController {
         setupCollectionView()
         setupTableView()
         setupPageControl()
+        prepareTableViewForTransition()
         
         fetchImages()
     }
@@ -59,6 +61,56 @@ class DetailedInfoViewController: UIViewController {
                 self.images = images
                 self.collectionView.reloadData()
             }
+        }
+    }
+    
+    //MARK: - Scrollable TableView Covering CollectionView
+    
+    var panGesture = UIPanGestureRecognizer()
+    
+    func prepareTableViewForTransition() {
+        
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(sender:)))
+        tableView.addGestureRecognizer(panGesture)
+    }
+    
+    @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
+        
+        guard !tableView.isScrollEnabled else { return }
+        guard let senderView = sender.view else { return }
+        
+        let translation = sender.translation(in: view)
+        
+        switch sender.state {
+        case .began, .changed:
+            
+            if topOffsetConstraint.constant + translation.y <= 60 {
+                tableView.removeGestureRecognizer(panGesture)
+                tableView.isScrollEnabled = true
+                break
+            }
+            
+            if topOffsetConstraint.constant + translation.y >= 245 {
+                break
+            }
+            
+            topOffsetConstraint.constant += translation.y
+            sender.setTranslation(CGPoint.zero, in: view)
+
+        case .ended:
+            break
+
+        default:
+            break
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.contentOffset.y <= 0 {
+            
+            tableView.isScrollEnabled = false
+            tableView.addGestureRecognizer(panGesture)
         }
     }
     
@@ -151,6 +203,10 @@ extension DetailedInfoViewController: UITableViewDelegate, UITableViewDataSource
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.isScrollEnabled = false
+        tableView.layer.cornerRadius = 15
+        tableView.clipsToBounds = true
         
         //Register Cell
         let aboutInfoCellNIB = UINib(nibName: "AboutInfoCell", bundle: nil)
