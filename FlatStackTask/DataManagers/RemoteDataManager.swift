@@ -52,4 +52,57 @@ class RemoteDataManager {
             }
         }
     }
+    
+    func getImages(flagImageURL: String, imageURLs: [String], complition: @escaping ([UIImage]) -> Void) {
+        
+        //Принимаем URL флага и [URL] всех картинок
+        
+        var images: [UIImage] = []
+        
+        let group = DispatchGroup()
+        
+        
+        for imageURL in imageURLs {
+            
+            group.enter()
+            
+            Alamofire.request(imageURL).responseData { response in
+                
+                print("DEBUG: Network call: \(imageURL)")
+                
+                if let data = response.result.value {
+                    
+                    if let image = UIImage(data: data) {
+                        
+                        images.append(image)
+                    }
+                }
+                print("DEBUG: Network call: \(imageURL) FINISHED ")
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            
+            print("DEBUG: All network calls finished")
+            print("DEBUG: Amount of recieved images: \(images.count)")
+            print("----------------------------------------------------")
+            
+            if images.isEmpty {
+                
+                Alamofire.request(flagImageURL).responseData { response in
+                    
+                    if let data = response.result.value {
+                        
+                        if let image = UIImage(data: data) {
+                            
+                            complition([image])
+                        }
+                    }
+                }
+            }
+            
+            complition(images)
+        }
+    }
 }
