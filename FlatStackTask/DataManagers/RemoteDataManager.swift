@@ -2,11 +2,13 @@ import Foundation
 import UIKit
 import Alamofire
 
-let cacheImage = NSCache<NSString, UIImage>()
+//let cacheImage = NSCache<NSString, UIImage>()
 
 class RemoteDataManager {
     
     static let shared = RemoteDataManager()
+    
+    private let localDM = LocalDataManager.shared
     
     func getData(page: String, complition: @escaping (NetworkResponse?, Error?) -> ()) {
         
@@ -34,7 +36,7 @@ class RemoteDataManager {
     
     func getImage(by stringURL: String, complition: @escaping (UIImage?) -> ()) {
         
-        if let image = cacheImage.object(forKey: stringURL as NSString) {
+        if let image = localDM.getCachedImage(key: stringURL) {
             
             DispatchQueue.main.async {
                 
@@ -58,7 +60,7 @@ class RemoteDataManager {
                         
                         DispatchQueue.main.async {
                             
-                            cacheImage.setObject(image, forKey: stringURL as NSString)
+                            self.localDM.saveCachedImage(image: image, key: stringURL)
                             complition(image)
                         }
                     }
@@ -78,7 +80,7 @@ class RemoteDataManager {
         
         for imageURL in imageURLs {
             
-            if let image = cacheImage.object(forKey: imageURL as NSString) {
+            if let image = localDM.getCachedImage(key: imageURL) {
                 
                 images.append(image)
                 
@@ -92,7 +94,7 @@ class RemoteDataManager {
                         
                         if let image = UIImage(data: data) {
                             
-                            cacheImage.setObject(image, forKey: imageURL as NSString)
+                            self.localDM.saveCachedImage(image: image, key: imageURL)
                             images.append(image)
                         }
                     }
@@ -105,7 +107,7 @@ class RemoteDataManager {
             
             if images.isEmpty {
                 
-                if let image = cacheImage.object(forKey: flagImageURL as NSString) {
+                if let image = self.localDM.getCachedImage(key: flagImageURL) {
                     
                     DispatchQueue.main.async {
                         complition([image])
@@ -120,7 +122,7 @@ class RemoteDataManager {
                             
                             if let image = UIImage(data: data) {
                                 
-                                cacheImage.setObject(image, forKey: flagImageURL as NSString)
+                                self.localDM.saveCachedImage(image: image, key: flagImageURL)
                                 complition([image])
                             }
                         }
