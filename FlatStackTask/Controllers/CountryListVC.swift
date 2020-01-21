@@ -47,9 +47,11 @@ class CountryListViewController: UIViewController {
         
         RemoteDataManager.shared.getData(page: page) { networkResponse, error in
             
-            guard error == nil else {
-                AlertService.showErrorAlert(on: self, message: error!.localizedDescription)
-                self.tableView.reloadSections(IndexSet(integer: 1), with: .none)
+            if error != nil {
+                
+                AlertService.showErrorAlert(on: self, message: error!.localizedDescription + "\nPresenting cached countries")
+                self.countries = LocalDataManager.shared.getAllData()
+                self.tableView.reloadData()
                 return
             }
             

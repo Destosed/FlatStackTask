@@ -50,4 +50,9 @@ class LocalDataManager {
         
         cacheImage[key] = image
     }
+    
+    func saveCacheImageDictionary() {
+        
+        userDefaults.set(cacheImage, forKey: cacheImageKey)
+    }
 }
