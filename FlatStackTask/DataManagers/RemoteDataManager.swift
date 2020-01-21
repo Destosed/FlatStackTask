@@ -1,5 +1,8 @@
 import Foundation
+import UIKit
 import Alamofire
+
+let cacheImage = NSCache<NSString, UIImage>()
 
 class RemoteDataManager {
     
@@ -7,23 +10,19 @@ class RemoteDataManager {
     
     func getData(page: String, complition: @escaping (NetworkResponse?, Error?) -> ()) {
         
-        print("DEBUG:")
-        print("Going to URL: \(page)")
-        
         Alamofire.request(page).responseData { response in
             
-            print(response.result)
-            print("--------------------")
-            
             if let error = response.error {
-                complition(nil, error)
-                return
+                DispatchQueue.main.async {
+                    complition(nil, error)
+                    return
+                }
             }
             
             if let data = response.result.value {
                 
                 guard let networkResponse = try? JSONDecoder().decode(NetworkResponse.self, from: data) else {
-                    print("Error")
+                    print("Error: Couldn't built networkResponse model")
                     return
                 }
                 DispatchQueue.main.async {
@@ -35,19 +34,34 @@ class RemoteDataManager {
     
     func getImage(by stringURL: String, complition: @escaping (UIImage?) -> ()) {
         
-        Alamofire.request(stringURL).responseData { response in
+        if let image = cacheImage.object(forKey: stringURL as NSString) {
             
-            if response.error != nil {
+            DispatchQueue.main.async {
                 
-                complition(nil)
+                complition(image)
                 return
             }
             
-            if let data = response.result.value {
+        } else {
+        
+            Alamofire.request(stringURL).responseData { response in
                 
-                let image = UIImage(data: data)
-                DispatchQueue.main.async {
-                    complition(image)
+                if response.error != nil {
+                    
+                    complition(nil)
+                    return
+                }
+                
+                if let data = response.result.value {
+                    
+                    if let image = UIImage(data: data) {
+                        
+                        DispatchQueue.main.async {
+                            
+                            cacheImage.setObject(image, forKey: stringURL as NSString)
+                            complition(image)
+                        }
+                    }
                 }
             }
         }
@@ -64,45 +78,59 @@ class RemoteDataManager {
         
         for imageURL in imageURLs {
             
-            group.enter()
-            
-            Alamofire.request(imageURL).responseData { response in
+            if let image = cacheImage.object(forKey: imageURL as NSString) {
                 
-                print("DEBUG: Network call: \(imageURL)")
+                images.append(image)
                 
-                if let data = response.result.value {
-                    
-                    if let image = UIImage(data: data) {
-                        
-                        images.append(image)
-                    }
-                }
-                print("DEBUG: Network call: \(imageURL) FINISHED ")
-                group.leave()
-            }
-        }
-        
-        group.notify(queue: .main) {
+            } else {
             
-            print("DEBUG: All network calls finished")
-            print("DEBUG: Amount of recieved images: \(images.count)")
-            print("----------------------------------------------------")
-            
-            if images.isEmpty {
+                group.enter()
                 
-                Alamofire.request(flagImageURL).responseData { response in
+                Alamofire.request(imageURL).responseData { response in
                     
                     if let data = response.result.value {
                         
                         if let image = UIImage(data: data) {
                             
-                            complition([image])
+                            cacheImage.setObject(image, forKey: imageURL as NSString)
+                            images.append(image)
+                        }
+                    }
+                    group.leave()
+                }
+            }
+        }
+        
+        group.notify(queue: .main) {
+            
+            if images.isEmpty {
+                
+                if let image = cacheImage.object(forKey: flagImageURL as NSString) {
+                    
+                    DispatchQueue.main.async {
+                        complition([image])
+                        return
+                    }
+                    
+                } else {
+                
+                    Alamofire.request(flagImageURL).responseData { response in
+                        
+                        if let data = response.result.value {
+                            
+                            if let image = UIImage(data: data) {
+                                
+                                cacheImage.setObject(image, forKey: flagImageURL as NSString)
+                                complition([image])
+                            }
                         }
                     }
                 }
+            } else {
+                DispatchQueue.main.async {
+                    complition(images)
+                }
             }
-            
-            complition(images)
         }
     }
 }
