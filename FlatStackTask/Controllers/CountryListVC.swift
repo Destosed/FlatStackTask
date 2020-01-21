@@ -2,6 +2,15 @@ import UIKit
 
 class CountryListViewController: UIViewController {
     
+    //MARK: - Constants
+    
+    let firstPage = "https://rawgit.com/NikitaAsabin/799e4502c9fc3e0ea7af439b2dfd88fa/raw/7f5c6c66358501f72fada21e04d75f64474a7888/page1.json"
+    let countryCellNibName = "CountryCell"
+    let countryCellIdentifier = "CountryCell"
+    let loadingCellNibName = "LoadingCell"
+    let loadingCellIdentifier = "LoadingCell"
+    let detailInfoVC_Identifier = "DetailedInfoVC"
+    
     //MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
@@ -9,12 +18,11 @@ class CountryListViewController: UIViewController {
     //MARK: - Properties
     
     var countries: [Country] = []
-    var firstPage = "https://rawgit.com/NikitaAsabin/799e4502c9fc3e0ea7af439b2dfd88fa/raw/7f5c6c66358501f72fada21e04d75f64474a7888/page1.json"
     var nextPage: String?
     var isGettingData = false
     var refresher = UIRefreshControl()
     
-    //MARK: - Life Circle
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,21 +30,6 @@ class CountryListViewController: UIViewController {
         setupTableView()
         setupRefresher()
         fetchData(page: firstPage)
-    }
-    
-    //MARK:- Infinity Scroll
-    
-    func scrollViewDidScroll(_ scrollView:UIScrollView) {
-        
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        
-        if offsetY > contentHeight - scrollView.frame.height {
-            
-            if !isGettingData && nextPage != "" {
-                fetchData(page: nextPage!)
-            }
-        }
     }
     
     //MARK: - Data Methods
@@ -49,6 +42,7 @@ class CountryListViewController: UIViewController {
             
             if error != nil {
                 
+                //If couldn't get data from RemoteDM then getting from LocalDM
                 AlertService.showErrorAlert(on: self, message: error!.localizedDescription + "\nPresenting cached countries")
                 self.countries = LocalDataManager.shared.getAllData()
                 self.tableView.reloadData()
@@ -80,6 +74,24 @@ class CountryListViewController: UIViewController {
         countries.removeAll()
         fetchData(page: firstPage)
     }
+    
+    //MARK:- Infinity Scroll
+    
+    func scrollViewDidScroll(_ scrollView:UIScrollView) {
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            
+            if !isGettingData && nextPage != "" {
+                
+                isGettingData = true
+                tableView.reloadSections(IndexSet(integer: 1), with: .none)
+                fetchData(page: nextPage!)
+            }
+        }
+    }
 }
 
 //MARK: - Table View Stack
@@ -91,11 +103,11 @@ extension CountryListViewController: UITableViewDelegate, UITableViewDataSource 
         tableView.delegate = self
         tableView.dataSource = self
         
-        let countryCellNib = UINib(nibName: "CountryCell", bundle: nil)
-        tableView.register(countryCellNib, forCellReuseIdentifier: "CountryCell")
+        let countryCellNib = UINib(nibName: countryCellNibName, bundle: nil)
+        tableView.register(countryCellNib, forCellReuseIdentifier: countryCellIdentifier)
         
-        let loadingCellNib = UINib(nibName: "LoadingCell", bundle: nil)
-        tableView.register(loadingCellNib, forCellReuseIdentifier: "LoadingCell")
+        let loadingCellNib = UINib(nibName: loadingCellNibName, bundle: nil)
+        tableView.register(loadingCellNib, forCellReuseIdentifier: loadingCellIdentifier)
         
         tableView.estimatedRowHeight = UITableView.automaticDimension
     }
@@ -117,13 +129,13 @@ extension CountryListViewController: UITableViewDelegate, UITableViewDataSource 
         
         if indexPath.section == 0 {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell") as! CountryCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: countryCellIdentifier) as! CountryCell
             cell.setup(for: countries[indexPath.row])
             return cell
             
         } else {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell") as! LoadingCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier) as! LoadingCell
             cell.spinner.startAnimating()
             return cell
         }
@@ -132,7 +144,7 @@ extension CountryListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailedInfoVC = storyboard.instantiateViewController(identifier: "DetailedInfoVC") as! DetailedInfoViewController
+        let detailedInfoVC = storyboard.instantiateViewController(identifier: detailInfoVC_Identifier) as! DetailedInfoViewController
         
         detailedInfoVC.countryInfo = countries[indexPath.row]
         

@@ -1,5 +1,6 @@
 import UIKit
 
+//Планировал использовать CoreData, но конкретно здесь с UserDefaults намного удобнее и проще
 class LocalDataManager {
     
     static let shared = LocalDataManager()
@@ -16,9 +17,10 @@ class LocalDataManager {
             savedCacheImage is [String : UIImage] {
             
             self.cacheImage = savedCacheImage as! [String : UIImage]
-            
         }
     }
+    
+    //MARK: - Country methods
     
     func getAllData() -> [Country] {
         
@@ -45,6 +47,8 @@ class LocalDataManager {
         }
         return nil
     }
+    
+    //MARK: - CacheImage methods
     
     func saveCachedImage(image: UIImage, key: String) {
         

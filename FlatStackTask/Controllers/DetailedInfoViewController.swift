@@ -2,6 +2,13 @@ import UIKit
 
 class DetailedInfoViewController: UIViewController {
     
+    //MARK: - Constants
+    
+    let aboutInfoCellNibName = "AboutInfoCell"
+    let aboutInfoCellIdentifier = "AboutInfoCell"
+    let imageSliderCellNibName = "ImageSliderCell"
+    let imageSlierCellIdentifier = "ImageSliderCell"
+    
     //MARK: - IBOutlets
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -11,12 +18,12 @@ class DetailedInfoViewController: UIViewController {
     
     //MARK: - Properties
     
+    var panGesture = UIPanGestureRecognizer()
     var countryInfo: Country!
     var flagImage: UIImage!
-    
     var images: [UIImage] = []
     
-    //MARK: - Life Circle
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,28 +52,27 @@ class DetailedInfoViewController: UIViewController {
     
     func fetchImages() {
         
-        images = [#imageLiteral(resourceName: "imagePlaceholder.jpg")] //Ставим PlaceHolder
+        images = [#imageLiteral(resourceName: "imagePlaceholder.jpg")] //Adding PlaceHolder
         
         let flagImageURL = countryInfo.country_info.flag
         var imagesURL = countryInfo.country_info.images
-        if let extraImageURL = countryInfo.image, !extraImageURL.isEmpty {
-            imagesURL.append(extraImageURL)
+        if !countryInfo.image.isEmpty {
+            imagesURL.append(countryInfo.image)
         }
         
         RemoteDataManager.shared.getImages(flagImageURL: flagImageURL, imageURLs: imagesURL) { images in
             
             DispatchQueue.main.async {
                 
-                self.images.removeAll() //Убираем PlaceHolder
+                self.images.removeAll() //Removing PlaceHolder
                 self.images = images
+                self.pageControl.numberOfPages = images.count
                 self.collectionView.reloadData()
             }
         }
     }
     
     //MARK: - Scrollable TableView Covering CollectionView
-    
-    var panGesture = UIPanGestureRecognizer()
     
     func prepareTableViewForTransition() {
         
@@ -77,28 +83,26 @@ class DetailedInfoViewController: UIViewController {
     @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
         
         guard !tableView.isScrollEnabled else { return }
-        guard let senderView = sender.view else { return }
         
         let translation = sender.translation(in: view)
         
         switch sender.state {
         case .began, .changed:
             
+            //tableView top limit
             if topOffsetConstraint.constant + translation.y <= 60 {
                 tableView.removeGestureRecognizer(panGesture)
                 tableView.isScrollEnabled = true
                 break
             }
             
+            //TableView bottom limit
             if topOffsetConstraint.constant + translation.y >= 245 {
                 break
             }
             
             topOffsetConstraint.constant += translation.y
             sender.setTranslation(CGPoint.zero, in: view)
-
-        case .ended:
-            break
 
         default:
             break
@@ -118,7 +122,6 @@ class DetailedInfoViewController: UIViewController {
     
     func setupPageControl() {
         
-        pageControl.numberOfPages = images.count
         pageControl.hidesForSinglePage = true
         pageControl.isUserInteractionEnabled = false
     }
@@ -129,7 +132,7 @@ class DetailedInfoViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         
-        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .white
     }
     
     func disableNavBarTransparency() {
@@ -138,7 +141,7 @@ class DetailedInfoViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.isTranslucent = false
         
-        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.tintColor = .black
     }
 }
 
@@ -151,8 +154,8 @@ extension DetailedInfoViewController: UICollectionViewDelegate, UICollectionView
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        let cellNib = UINib(nibName: "ImageSliderCell", bundle: nil)
-        collectionView.register(cellNib, forCellWithReuseIdentifier: "ImageSliderCell")
+        let cellNib = UINib(nibName: imageSliderCellNibName, bundle: nil)
+        collectionView.register(cellNib, forCellWithReuseIdentifier: imageSlierCellIdentifier)
         
         collectionView.contentInsetAdjustmentBehavior = .never
     }
@@ -163,7 +166,7 @@ extension DetailedInfoViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSliderCell", for: indexPath) as! ImageSliderCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageSlierCellIdentifier, for: indexPath) as! ImageSliderCell
         cell.imageView.image = images[indexPath.row]
         return cell
     }
@@ -209,8 +212,8 @@ extension DetailedInfoViewController: UITableViewDelegate, UITableViewDataSource
         tableView.clipsToBounds = true
         
         //Register Cell
-        let aboutInfoCellNIB = UINib(nibName: "AboutInfoCell", bundle: nil)
-        tableView.register(aboutInfoCellNIB, forCellReuseIdentifier: "AboutInfoCell")
+        let aboutInfoCellNIB = UINib(nibName: aboutInfoCellNibName, bundle: nil)
+        tableView.register(aboutInfoCellNIB, forCellReuseIdentifier: aboutInfoCellIdentifier)
         
         //HeaderView with label
         let headerView = UIView()
@@ -282,7 +285,7 @@ extension DetailedInfoViewController: UITableViewDelegate, UITableViewDataSource
             
         } else {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AboutInfoCell") as! AboutInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: aboutInfoCellIdentifier) as! AboutInfoCell
 
             cell.setup(for: countryInfo.description)
             cell.selectionStyle = .none

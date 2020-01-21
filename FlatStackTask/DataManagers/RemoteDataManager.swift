@@ -2,8 +2,6 @@ import Foundation
 import UIKit
 import Alamofire
 
-//let cacheImage = NSCache<NSString, UIImage>()
-
 class RemoteDataManager {
     
     static let shared = RemoteDataManager()
@@ -15,6 +13,7 @@ class RemoteDataManager {
         Alamofire.request(page).responseData { response in
             
             if let error = response.error {
+                
                 DispatchQueue.main.async {
                     complition(nil, error)
                     return
@@ -27,6 +26,7 @@ class RemoteDataManager {
                     print("Error: Couldn't built networkResponse model")
                     return
                 }
+                
                 DispatchQueue.main.async {
                     complition(networkResponse, nil)
                 }
@@ -71,12 +71,8 @@ class RemoteDataManager {
     
     func getImages(flagImageURL: String, imageURLs: [String], complition: @escaping ([UIImage]) -> Void) {
         
-        //Принимаем URL флага и [URL] всех картинок
-        
-        var images: [UIImage] = []
-        
         let group = DispatchGroup()
-        
+        var images: [UIImage] = []
         
         for imageURL in imageURLs {
             
@@ -104,6 +100,8 @@ class RemoteDataManager {
         }
         
         group.notify(queue: .main) {
+            
+            //Happens after imageURLs loop
             
             if images.isEmpty {
                 
