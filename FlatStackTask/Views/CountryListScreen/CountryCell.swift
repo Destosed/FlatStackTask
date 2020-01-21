@@ -15,7 +15,6 @@ class CountryCell: UITableViewCell {
         capitalLabel.text = country.capital
         shortInfoLabel.text = country.description_small
         
-        //TODO: Getting image
         let imageURL = country.country_info.flag
         RemoteDataManager.shared.getImage(by: imageURL, complition: { image in
             
