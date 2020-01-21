@@ -8,7 +8,7 @@ struct Country: Codable {
     let population: Int
     let description_small: String
     let description: String
-    let image: String?
+    let image: String
     let country_info: CountryInfo
 }
 
